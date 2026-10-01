@@ -1,0 +1,1095 @@
+:root {
+    --primary-color: #1e293b;
+    --accent-color: #2563eb;
+    --bg-color: #f1f5f9;
+    --card-bg: #ffffff;
+    --text-main: #334155;
+    --sidebar-bg: #0f172a;
+    --danger-color: #dc2626; /* Vermelho Quente */
+    --warning-color: #d97706; /* Amarelo Morno */
+    --info-color: #0284c7;    /* Azul Frio */
+    --success-color: #16a34a; /* Verde Ganho */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+}
+
+/* TELA DE LOGIN — LAYOUT "EDITORIAL" DIVIDIDO, COM A MARCA EM DESTAQUE */
+:root {
+    --login-navy-deep: #050b1c;
+    --login-navy-mid: #0a1630;
+    --login-navy-light: #0d1c3c;
+    --login-gold: #c9a54b;
+    --login-gold-light: #e6c983;
+    --login-cream: #f4efe6;
+}
+
+#login-screen {
+    display: flex;
+    align-items: stretch;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(160deg, #17171b 0%, #060607 75%);
+    padding: 22px;
+    gap: 22px;
+}
+
+/* ===== LADO ESQUERDO — FOTO DE FUNDO + OVERLAY EDITORIAL ===== */
+.login-side-left {
+    position: relative;
+    flex: 1.4;
+    overflow: hidden;
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* preto sólido por baixo: se a foto (login-bg.jpeg) não carregar, o
+       painel continua preto em vez de aparecer vazio/transparente */
+    background-color: #0a0a0c;
+    background-image:
+        linear-gradient(100deg, rgba(6, 6, 8, 0.94) 0%, rgba(6, 6, 8, 0.8) 38%, rgba(6, 6, 8, 0.42) 75%, rgba(6, 6, 8, 0.18) 100%),
+        linear-gradient(0deg, rgba(6, 6, 8, 0.55) 0%, rgba(6, 6, 8, 0) 30%),
+        url('login-bg.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+.login-left-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 620px;
+    padding: 0 56px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-client-tag {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    z-index: 1;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.login-client-name {
+    color: #ffffff;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.login-client-sub {
+    color: var(--login-gold-light);
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+}
+
+.login-wordmark {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 26px;
+}
+
+.login-wordmark-ge {
+    font-family: 'Montserrat', 'Poppins', sans-serif;
+    font-size: 50px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    color: rgba(230, 201, 131, 0.1);
+    -webkit-text-stroke: 1px var(--login-gold-light);
+    line-height: 1;
+}
+
+.login-wordmark-divider {
+    width: 1px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.25);
+    flex-shrink: 0;
+}
+
+.login-wordmark-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.login-wordmark-text strong {
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.login-wordmark-text em {
+    font-style: normal;
+    color: var(--login-gold-light);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+.login-headline {
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.login-headline-gold {
+    color: var(--login-gold-light);
+}
+
+.login-left-tagline {
+    max-width: 380px;
+    color: #c7cede;
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin-bottom: 34px;
+}
+
+/* pilares do ecossistema */
+.login-pillars {
+    display: flex;
+    gap: 26px;
+    margin-bottom: 30px;
+}
+
+.login-pillar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #d6dbec;
+}
+
+.login-pillar-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.3px solid rgba(230, 201, 131, 0.55);
+    color: var(--login-gold-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-pillar-icon svg {
+    width: 19px;
+    height: 19px;
+}
+
+.login-eco-line {
+    color: #aab2cc;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    line-height: 1.6;
+}
+
+.login-eco-rule {
+    display: block;
+    width: 42px;
+    height: 2px;
+    background: var(--login-gold);
+    margin-bottom: 12px;
+}
+
+.login-corner-bl,
+.login-corner-br {
+    position: absolute;
+    z-index: 1;
+    bottom: 26px;
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.5;
+}
+
+.login-corner-bl {
+    left: 40px;
+}
+
+.login-corner-br {
+    right: 40px;
+    text-align: right;
+}
+
+/* ===== LADO DIREITO — CARD DE VIDRO SOBRE A FOTO ===== */
+.login-side-right {
+    flex: 0 0 400px;
+    align-self: center;
+    max-height: calc(100% - 20px);
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(8, 8, 10, 0.68);
+    backdrop-filter: blur(22px) saturate(140%);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 22px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    padding: 40px;
+}
+
+.login-form-wrap {
+    width: 100%;
+    max-width: 320px;
+}
+
+.login-form-wrap h2 {
+    margin-bottom: 12px;
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.login-form-desc {
+    color: #9aa3c2;
+    font-size: 13.5px;
+    line-height: 1.5;
+    margin-bottom: 26px;
+}
+
+.form-group-login label {
+    color: var(--login-gold-light);
+}
+
+.input-icon-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon-wrap .input-icon {
+    position: absolute;
+    left: 12px;
+    font-size: 14px;
+    opacity: 0.75;
+    pointer-events: none;
+}
+
+#login-screen .form-group-login input {
+    width: 100%;
+    padding: 12px 40px 12px 38px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(201, 165, 75, 0.28);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#login-screen .form-group-login input::placeholder {
+    color: #6b7285;
+}
+
+#login-screen .form-group-login input:focus {
+    border-color: var(--login-gold);
+    box-shadow: 0 0 0 3px rgba(201, 165, 75, 0.18);
+}
+
+.toggle-senha {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    opacity: 0.75;
+    padding: 4px;
+}
+
+.toggle-senha:hover {
+    opacity: 1;
+}
+
+.login-form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2px 0 18px;
+    font-size: 12.5px;
+}
+
+.login-remember {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #b9c2dc;
+    cursor: pointer;
+}
+
+.login-remember input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    accent-color: var(--login-gold);
+    cursor: pointer;
+}
+
+.login-forgot {
+    color: var(--login-gold-light);
+    text-decoration: none;
+}
+
+.login-forgot:hover {
+    text-decoration: underline;
+}
+
+#login-screen .btn-login {
+    margin-top: 0;
+    background: linear-gradient(135deg, var(--login-gold-light), var(--login-gold));
+    color: var(--login-navy-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 20px;
+    font-size: 15px;
+}
+
+#login-screen .btn-login:hover {
+    background: var(--login-gold-light);
+}
+
+.btn-arrow {
+    transition: transform 0.2s;
+}
+
+.btn-login:hover .btn-arrow {
+    transform: translateX(3px);
+}
+
+.login-divider-text {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #6b7285;
+    font-size: 11.5px;
+    margin: 20px 0 16px;
+}
+
+.login-divider-text::before,
+.login-divider-text::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.login-divider-text span {
+    padding: 0 10px;
+    white-space: nowrap;
+}
+
+.login-social-row {
+    display: flex;
+    gap: 10px;
+}
+
+.login-social-btn {
+    flex: 1;
+    height: 42px;
+    border-radius: 9px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.login-social-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(201, 165, 75, 0.4);
+}
+
+.login-footer-badge {
+    margin-top: 22px;
+    text-align: center;
+    font-size: 10.5px;
+    letter-spacing: 0.8px;
+    color: #7d859c;
+    text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+    #login-screen {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        padding: 16px;
+        gap: 16px;
+    }
+    .login-side-left {
+        flex: none;
+        min-height: 480px;
+        padding: 70px 0 90px;
+    }
+    .login-left-content {
+        padding: 0 22px;
+        max-width: 100%;
+    }
+    .login-client-tag {
+        top: 20px;
+        right: 22px;
+    }
+    .login-wordmark-ge {
+        font-size: 36px;
+    }
+    .login-headline {
+        font-size: 28px;
+    }
+    .login-pillars {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+    .login-corner-bl,
+    .login-corner-br {
+        left: 22px;
+        right: 22px;
+        bottom: 18px;
+    }
+    .login-corner-br {
+        display: none;
+    }
+    .login-side-right {
+        flex: none;
+        padding: 30px 22px;
+    }
+}
+
+.form-group {
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    color: #64748b;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    background: #fff;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--accent-color);
+}
+
+.erro-msg {
+    color: var(--danger-color);
+    font-size: 11px;
+    margin-top: 4px;
+    display: none;
+    font-weight: 600;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-secondary {
+    background-color: #64748b;
+}
+.btn-secondary:hover {
+    background-color: #475569;
+}
+
+/* LAYOUT DO SISTEMA */
+#app-screen {
+    display: none;
+    height: 100vh;
+    grid-template-columns: 260px 1fr;
+}
+
+aside {
+    background-color: var(--sidebar-bg);
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-brand {
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px solid #1e293b;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 20px 0;
+    flex: 1;
+}
+
+.sidebar-menu li {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #94a3b8;
+    transition: all 0.2s;
+}
+
+.sidebar-menu li:hover, .sidebar-menu li.active {
+    background-color: #1e293b;
+    color: white;
+    border-left: 4px solid var(--accent-color);
+}
+
+/* ===== MENU "ECOSSISTEMA GE" — GRUPOS RECOLHÍVEIS ===== */
+.sidebar-menu li.sidebar-group {
+    padding: 0;
+    cursor: default;
+    overflow: hidden;
+}
+
+/* neutraliza o hover/active genérico de ".sidebar-menu li" no <li> que
+   envolve o grupo inteiro (senão ele pinta o bloco todo ao passar o
+   mouse em qualquer subitem, por causa do :hover "vazar" pro pai) */
+.sidebar-menu li.sidebar-group:hover,
+.sidebar-menu li.sidebar-group.active {
+    background-color: transparent;
+    color: inherit;
+    border-left: none;
+}
+
+.sidebar-group-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.sidebar-group-title:hover {
+    background-color: #1e293b;
+    color: #ffffff;
+}
+
+.sidebar-group.open > .sidebar-group-title {
+    background-color: #1e293b;
+    color: #ffffff;
+}
+
+.sidebar-group-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    background: rgba(37, 99, 235, 0.28);
+    color: #93c5fd;
+    font-size: 10px;
+    font-weight: 700;
+    margin-right: 9px;
+}
+
+.sidebar-group-chevron {
+    font-size: 13px;
+    color: #64748b;
+    transition: transform 0.25s ease, color 0.2s;
+}
+
+.sidebar-group.open .sidebar-group-chevron {
+    transform: rotate(90deg);
+    color: #ffffff;
+}
+
+.sidebar-subitems {
+    list-style: none;
+    max-height: 0;
+    overflow: hidden;
+    background: #0b1526;
+    transition: max-height 0.25s ease;
+}
+
+.sidebar-group.open .sidebar-subitems {
+    max-height: 240px;
+}
+
+.sidebar-subitems li {
+    padding: 9px 20px 9px 47px !important;
+    font-size: 12.5px;
+    color: #94a3b8;
+    cursor: pointer;
+    border-left: 4px solid transparent;
+    transition: all 0.2s;
+}
+
+.sidebar-subitems li:hover,
+.sidebar-subitems li.active {
+    background-color: #1e293b !important;
+    color: #ffffff !important;
+    border-left-color: var(--accent-color) !important;
+}
+
+.sidebar-logout {
+    margin-top: 18px;
+    color: #f87171 !important;
+}
+
+.sidebar-menu li.sidebar-section-label {
+    margin-top: 14px;
+    padding: 10px 20px 6px !important;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #64748b;
+    text-transform: uppercase;
+    cursor: default;
+    border-top: 1px solid #1e293b;
+}
+
+.sidebar-menu li.sidebar-section-label:hover {
+    background: none !important;
+    border-left: none !important;
+    color: #64748b !important;
+}
+
+.sidebar-menu li.sidebar-section-label em {
+    display: block;
+    font-style: normal;
+    font-weight: 500;
+    text-transform: none;
+    font-size: 9.5px;
+    color: #47536b;
+    letter-spacing: 0.2px;
+    margin-top: 2px;
+}
+
+/* ===== PÁGINAS PLACEHOLDER DO ECOSSISTEMA GE ===== */
+.eco-breadcrumb {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 4px;
+}
+
+.placeholder-card {
+    background: white;
+    border: 1px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 48px 30px;
+    text-align: center;
+    color: #64748b;
+    max-width: 540px;
+}
+
+.placeholder-icon {
+    font-size: 32px;
+    margin-bottom: 14px;
+}
+
+.placeholder-card h4 {
+    color: var(--primary-color);
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.placeholder-card p {
+    font-size: 13.5px;
+    line-height: 1.6;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+header {
+    background: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.user-info {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.content-body {
+    padding: 30px;
+}
+
+/* ABAS DO SISTEMA */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* DASHBOARD ESTILO PROFISSIONAL */
+.dashboard-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dashboard-topbar p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.dashboard-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.sub-tabs {
+    display: flex;
+    gap: 15px;
+    border-bottom: 1px solid #cbd5e1;
+    margin-bottom: 20px;
+}
+
+.sub-tab-item {
+    padding: 8px 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.sub-tab-item.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--accent-color);
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.card-pro {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+    position: relative;
+}
+
+.card-pro .card-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.card-pro h3 {
+    font-size: 12px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-pro .icon-badge {
+    font-size: 16px;
+}
+
+.card-pro .number {
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+}
+
+.card-pro .card-footer-text {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* BLOCOS DE TEMPERATURA E ANALISE */
+.dash-sections-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+@media(max-width: 900px) {
+    .dash-sections-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.dash-box {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.dash-box h4 {
+    font-size: 15px;
+    color: var(--primary-color);
+    margin-bottom: 6px;
+}
+
+.dash-box p {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+/* ESTILO DO GRÁFICO DE ROSCA (DONUT CHART) */
+.donut-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.donut-chart {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* O furo do meio para virar rosca */
+.donut-hole {
+    width: 120px;
+    height: 120px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.donut-hole .donut-total-num {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--primary-color);
+    line-height: 1.1;
+}
+
+.donut-hole .donut-total-label {
+    font-size: 10px;
+    color: #64748b;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 2px;
+}
+
+.donut-legend-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    text-align: center;
+    gap: 10px;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 15px;
+}
+
+.legend-item-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.legend-label-top {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 4px;
+}
+
+.legend-percent {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 2px;
+}
+
+.legend-desc {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-quente { background-color: var(--danger-color); }
+.dot-morno { background-color: var(--warning-color); }
+.dot-frio { background-color: var(--info-color); }
+
+.temp-row-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.temp-row-item:last-child {
+    border-bottom: none;
+}
+
+.temp-info-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* ABA LEADS / CLIENTES */
+.leads-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.panel {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+    margin-bottom: 25px;
+    display: none;
+}
+
+.panel.mostrar {
+    display: block;
+}
+
+.panel h3 {
+    margin-bottom: 16px;
+    color: var(--primary-color);
+    font-size: 16px;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 8px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 13px;
+}
+
+table th {
+    background-color: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+}
+
+.badge-temp {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.temp-frio { background: #e0f2fe; color: #0284c7; }
+.temp-morno { background: #fef3c7; color: #d97706; }
+.temp-quente { background: #fee2e2; color: #dc2626; }
+
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 6px;
+}

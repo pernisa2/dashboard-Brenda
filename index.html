@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Conversão - Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@200;300&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- SDKs do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+    <!-- TELA DE LOGIN -->
+    <div id="login-screen">
+
+        <!-- LADO ESQUERDO — FOTO DE FUNDO + OVERLAY EDITORIAL -->
+        <div class="login-side-left">
+
+            <!-- Canto superior direito: assinatura do cliente -->
+            <div class="login-client-tag">
+                <span class="login-client-name">BRENDA SAVINO</span>
+                <span class="login-client-sub">GESTÃO EFICIENTE</span>
+            </div>
+
+            <div class="login-left-content">
+                <!-- Wordmark "GE | PORTAL GESTÃO EFICIENTE" -->
+                <div class="login-wordmark">
+                    <!--
+                        LOGO DO CLIENTE:
+                        substitua o "GE" abaixo por
+                        <img src="logo-cliente.png" alt="Logo"> assim que a logo real chegar.
+                    -->
+                    <span class="login-wordmark-ge" id="loginLogo">GE</span>
+                    <span class="login-wordmark-divider"></span>
+                    <span class="login-wordmark-text">
+                        <strong>ECOSSISTEMA</strong>
+                    </span>
+                </div>
+
+                <h1 class="login-headline">ENGENHARIA<br>APLICADA <span class="login-headline-gold">À GESTÃO</span></h1>
+                <p class="login-left-tagline">MENOS IMPROVISO. MAIS RESULTADO.</p>
+
+                <!-- Pilares do ecossistema GE -->
+                <div class="login-pillars">
+                    <div class="login-pillar">
+                        <span class="login-pillar-icon">
+                            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>
+                        </span>
+                        <span>ESTRATÉGIA</span>
+                    </div>
+                    <div class="login-pillar">
+                        <span class="login-pillar-icon">
+                            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="6" height="5" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="15" y="4" width="6" height="5" rx="1" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="15" width="6" height="5" rx="1" stroke="currentColor" stroke-width="1.4"/><path d="M6 9v3a3 3 0 0 0 3 3M18 9v3a3 3 0 0 1-3 3" stroke="currentColor" stroke-width="1.4"/></svg>
+                        </span>
+                        <span>PROCESSOS</span>
+                    </div>
+                    <div class="login-pillar">
+                        <span class="login-pillar-icon">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.1 1.5 2.6-.3.9 2.4 2.3 1.2-.5 2.6 1.2 2.3-1.8 1.9.3 2.6-2.5.7-1.4 2.2-2.4-.8-2.4.8-1.4-2.2-2.5-.7.3-2.6-1.8-1.9 1.2-2.3-.5-2.6 2.3-1.2.9-2.4 2.6.3z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M8.7 12.2l2.1 2.1 4.3-4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                        <span>QUALIDADE</span>
+                    </div>
+                    <div class="login-pillar">
+                        <span class="login-pillar-icon">
+                            <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="2.6" stroke="currentColor" stroke-width="1.4"/><path d="M4 19c0-3 2.2-5 5-5s5 2 5 5" stroke="currentColor" stroke-width="1.4"/><circle cx="17" cy="8.5" r="2.1" stroke="currentColor" stroke-width="1.3"/><path d="M14.5 12.8c2.6.2 4.5 2 4.7 4.6" stroke="currentColor" stroke-width="1.3"/></svg>
+                        </span>
+                        <span>PESSOAS</span>
+                    </div>
+                    <div class="login-pillar">
+                        <span class="login-pillar-icon">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M4 20V13M10 20V8M16 20V11M21 20V5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                        </span>
+                        <span>RESULTADOS</span>
+                    </div>
+                </div>
+
+                <div class="login-eco-line">
+                    <span class="login-eco-rule"></span>
+                    TODO O ECOSSISTEMA GE<br>EM UM SÓ LUGAR.
+                </div>
+            </div>
+
+            <div class="login-corner-bl">GESTÃO EFICIENTE&trade;</div>
+            <div class="login-corner-br">EMPRESAS MAIS EFICIENTES.<br>UM FUTURO MAIS GRANDE.</div>
+        </div>
+
+        <!-- LADO DIREITO — CARD DE FORMULÁRIO (VIDRO ESCURO SOBRE A FOTO) -->
+        <div class="login-side-right">
+            <div class="login-form-wrap">
+
+                <h2>Bem-vindo ao<br>Portal G.E.</h2>
+                <p class="login-form-desc">Acesse o ecossistema e transforme estratégia em resultados.</p>
+
+                <div class="form-group form-group-login">
+                    <div class="input-icon-wrap">
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="userInput" placeholder="Seu e-mail">
+                    </div>
+                </div>
+
+                <div class="form-group form-group-login">
+                    <div class="input-icon-wrap">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="passInput" placeholder="Sua senha">
+                        <button type="button" class="toggle-senha" id="toggleSenhaBtn" onclick="toggleSenha()" aria-label="Mostrar senha">👁️</button>
+                    </div>
+                </div>
+
+                <div class="login-form-row">
+                    <label class="login-remember">
+                        <input type="checkbox" id="lembrarInput">
+                        <span>Lembrar de mim</span>
+                    </label>
+                    <a href="#" class="login-forgot">Esqueceu a senha?</a>
+                </div>
+
+                <button class="btn btn-login" style="width: 100%;" onclick="fazerLogin()">
+                    Entrar <span class="btn-arrow">→</span>
+                </button>
+
+                <div class="login-divider-text"><span>OU CONTINUE COM</span></div>
+
+                <div class="login-social-row">
+                    <button type="button" class="login-social-btn" aria-label="Continuar com Google">
+                        <svg viewBox="0 0 24 24" width="18" height="18">
+                            <path fill="#4285F4" d="M23.52 12.27c0-.85-.08-1.67-.22-2.45H12v4.64h6.47c-.28 1.5-1.13 2.77-2.4 3.62v3h3.88c2.27-2.09 3.57-5.17 3.57-8.81z"/>
+                            <path fill="#34A853" d="M12 24c3.24 0 5.96-1.07 7.95-2.92l-3.88-3c-1.08.72-2.45 1.15-4.07 1.15-3.13 0-5.78-2.11-6.73-4.96H1.26v3.1C3.24 21.3 7.28 24 12 24z"/>
+                            <path fill="#FBBC05" d="M5.27 14.27a7.2 7.2 0 0 1 0-4.54v-3.1H1.26a12 12 0 0 0 0 10.74z"/>
+                            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.44-3.44C17.95 1.19 15.24 0 12 0 7.28 0 3.24 2.7 1.26 6.63l4.01 3.1C6.22 6.87 8.87 4.75 12 4.75z"/>
+                        </svg>
+                    </button>
+                    <button type="button" class="login-social-btn" aria-label="Continuar com Apple">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8.9-.15 2.11-.85 3.53-.72 1.62.13 2.85.77 3.65 1.9-3.34 2-2.68 6.24.68 7.58-.68 1.83-1.57 3.65-3.94 4.4l-.9-.99zM12.02 7.24c-.15-2.23 1.66-4.07 3.74-4.24.29 2.32-2.11 4.35-3.74 4.24z"/>
+                        </svg>
+                    </button>
+                    <button type="button" class="login-social-btn" aria-label="Continuar com Microsoft">
+                        <svg viewBox="0 0 24 24" width="18" height="18">
+                            <rect x="1" y="1" width="10" height="10" fill="#F25022"/>
+                            <rect x="13" y="1" width="10" height="10" fill="#7FBA00"/>
+                            <rect x="1" y="13" width="10" height="10" fill="#00A4EF"/>
+                            <rect x="13" y="13" width="10" height="10" fill="#FFB900"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="login-footer-badge">🛡️ SEUS DADOS PROTEGIDOS</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TELA PRINCIPAL DO SISTEMA -->
+    <div id="app-screen">
+        <aside>
+            <div class="sidebar-brand">ECOSSISTEMA GE</div>
+            <ul class="sidebar-menu" id="menuLateral">
+
+                <li class="sidebar-group" data-area="empresas">
+                    <div class="sidebar-group-title" onclick="toggleGrupo(this)">
+                        <span><span class="sidebar-group-num">1</span>Estratégia</span>
+                        <span class="sidebar-group-chevron">›</span>
+                    </div>
+                    <ul class="sidebar-subitems">
+                        <li onclick="mudarAba('eco-estrategia-planejamento', this)">Planejamento</li>
+                        <li onclick="mudarAba('eco-estrategia-metas-okrs', this)">Metas e OKRs</li>
+                        <li onclick="mudarAba('eco-estrategia-indicadores', this)">Indicadores</li>
+                        <li onclick="mudarAba('eco-estrategia-decisao', this)">Tomada de decisão</li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-group" data-area="empresas">
+                    <div class="sidebar-group-title" onclick="toggleGrupo(this)">
+                        <span><span class="sidebar-group-num">2</span>Processos</span>
+                        <span class="sidebar-group-chevron">›</span>
+                    </div>
+                    <ul class="sidebar-subitems">
+                        <li onclick="mudarAba('eco-processos-mapeamento', this)">Mapeamento</li>
+                        <li onclick="mudarAba('eco-processos-padronizacao', this)">Padronização</li>
+                        <li onclick="mudarAba('eco-processos-organizacao', this)">Organização</li>
+                        <li onclick="mudarAba('eco-processos-melhoria', this)">Melhoria contínua</li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-group" data-area="empresas">
+                    <div class="sidebar-group-title" onclick="toggleGrupo(this)">
+                        <span><span class="sidebar-group-num">3</span>Pessoas &amp; Times</span>
+                        <span class="sidebar-group-chevron">›</span>
+                    </div>
+                    <ul class="sidebar-subitems">
+                        <li onclick="mudarAba('eco-pessoas-estrutura', this)">Estrutura organizacional</li>
+                        <li onclick="mudarAba('eco-pessoas-papeis', this)">Papéis e responsabilidades</li>
+                        <li onclick="mudarAba('eco-pessoas-performance', this)">Performance</li>
+                        <li onclick="mudarAba('eco-pessoas-desenvolvimento', this)">Desenvolvimento</li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-group" data-area="empresas">
+                    <div class="sidebar-group-title" onclick="toggleGrupo(this)">
+                        <span><span class="sidebar-group-num">4</span>Qualidade</span>
+                        <span class="sidebar-group-chevron">›</span>
+                    </div>
+                    <ul class="sidebar-subitems">
+                        <li onclick="mudarAba('eco-qualidade-gestao', this)">Gestão da qualidade</li>
+                        <li onclick="mudarAba('eco-qualidade-iso9001', this)">ISO 9001</li>
+                        <li onclick="mudarAba('eco-qualidade-auditorias', this)">Auditorias</li>
+                        <li onclick="mudarAba('eco-qualidade-nao-conformidades', this)">Não conformidades</li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-group" data-area="empresas">
+                    <div class="sidebar-group-title" onclick="toggleGrupo(this)">
+                        <span><span class="sidebar-group-num">5</span>Agilidade</span>
+                        <span class="sidebar-group-chevron">›</span>
+                    </div>
+                    <ul class="sidebar-subitems">
+                        <li onclick="mudarAba('eco-agilidade-demandas', this)">Gestão de demandas</li>
+                        <li onclick="mudarAba('eco-agilidade-priorizacao', this)">Priorização</li>
+                        <li onclick="mudarAba('eco-agilidade-rotinas', this)">Rotinas de acompanhamento</li>
+                        <li onclick="mudarAba('eco-agilidade-entregas', this)">Entregas</li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-group" data-area="empresas">
+                    <div class="sidebar-group-title" onclick="toggleGrupo(this)">
+                        <span><span class="sidebar-group-num">6</span>Performance</span>
+                        <span class="sidebar-group-chevron">›</span>
+                    </div>
+                    <ul class="sidebar-subitems">
+                        <li onclick="mudarAba('eco-performance-indicadores', this)">Indicadores</li>
+                        <li onclick="mudarAba('eco-performance-analise', this)">Análise de resultados</li>
+                        <li onclick="mudarAba('eco-performance-eficiencia', this)">Eficiência</li>
+                        <li onclick="mudarAba('eco-performance-produtividade', this)">Produtividade</li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-group" data-area="empresas">
+                    <div class="sidebar-group-title" onclick="toggleGrupo(this)">
+                        <span><span class="sidebar-group-num">7</span>Diagnóstico &amp; Evolução</span>
+                        <span class="sidebar-group-chevron">›</span>
+                    </div>
+                    <ul class="sidebar-subitems">
+                        <li onclick="mudarAba('eco-diagnostico-ge', this)">Diagnóstico GE</li>
+                        <li onclick="mudarAba('eco-diagnostico-indice', this)">Índice G.E.™</li>
+                        <li onclick="mudarAba('eco-diagnostico-plano-acao', this)">Plano de ação</li>
+                        <li onclick="mudarAba('eco-diagnostico-acompanhamento', this)">Acompanhamento da evolução</li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-section-label" data-area="politico">POLÍTICO <em>(rascunho — me manda os nomes reais)</em></li>
+
+                <li class="sidebar-group" data-area="politico">
+                    <div class="sidebar-group-title" onclick="toggleGrupo(this)">
+                        <span><span class="sidebar-group-num">8</span>Estratégia Política</span>
+                        <span class="sidebar-group-chevron">›</span>
+                    </div>
+                    <ul class="sidebar-subitems">
+                        <li onclick="mudarAba('pol-estrategia-planejamento', this)">Planejamento de campanha/mandato</li>
+                        <li onclick="mudarAba('pol-estrategia-agenda', this)">Agenda político-partidária</li>
+                        <li onclick="mudarAba('pol-estrategia-pesquisas', this)">Pesquisas e indicadores</li>
+                        <li onclick="mudarAba('pol-estrategia-decisao', this)">Tomada de decisão</li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-group" data-area="politico">
+                    <div class="sidebar-group-title" onclick="toggleGrupo(this)">
+                        <span><span class="sidebar-group-num">9</span>Comunicação &amp; Imagem</span>
+                        <span class="sidebar-group-chevron">›</span>
+                    </div>
+                    <ul class="sidebar-subitems">
+                        <li onclick="mudarAba('pol-comunicacao-redes', this)">Redes sociais</li>
+                        <li onclick="mudarAba('pol-comunicacao-imprensa', this)">Assessoria de imprensa</li>
+                        <li onclick="mudarAba('pol-comunicacao-discursos', this)">Discursos e pautas</li>
+                        <li onclick="mudarAba('pol-comunicacao-opiniao', this)">Pesquisa de opinião</li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-group" data-area="politico">
+                    <div class="sidebar-group-title" onclick="toggleGrupo(this)">
+                        <span><span class="sidebar-group-num">10</span>Base &amp; Relacionamento</span>
+                        <span class="sidebar-group-chevron">›</span>
+                    </div>
+                    <ul class="sidebar-subitems">
+                        <li onclick="mudarAba('pol-base-eleitores', this)">Cadastro de eleitores</li>
+                        <li onclick="mudarAba('pol-base-atendimento', this)">Atendimento ao cidadão</li>
+                        <li onclick="mudarAba('pol-base-eventos', this)">Eventos e agenda de rua</li>
+                        <li onclick="mudarAba('pol-base-fidelizacao', this)">Fidelização de base</li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-group" data-area="politico">
+                    <div class="sidebar-group-title" onclick="toggleGrupo(this)">
+                        <span><span class="sidebar-group-num">11</span>Mandato &amp; Legislativo</span>
+                        <span class="sidebar-group-chevron">›</span>
+                    </div>
+                    <ul class="sidebar-subitems">
+                        <li onclick="mudarAba('pol-mandato-proposicoes', this)">Projetos e proposições</li>
+                        <li onclick="mudarAba('pol-mandato-emendas', this)">Emendas parlamentares</li>
+                        <li onclick="mudarAba('pol-mandato-comissoes', this)">Comissões</li>
+                        <li onclick="mudarAba('pol-mandato-votacoes', this)">Votações e pautas</li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-group" data-area="politico">
+                    <div class="sidebar-group-title" onclick="toggleGrupo(this)">
+                        <span><span class="sidebar-group-num">12</span>Financeiro &amp; Prestação de Contas</span>
+                        <span class="sidebar-group-chevron">›</span>
+                    </div>
+                    <ul class="sidebar-subitems">
+                        <li onclick="mudarAba('pol-financeiro-arrecadacao', this)">Arrecadação de campanha</li>
+                        <li onclick="mudarAba('pol-financeiro-tse', this)">Prestação de contas (TSE)</li>
+                        <li onclick="mudarAba('pol-financeiro-fornecedores', this)">Fornecedores</li>
+                        <li onclick="mudarAba('pol-financeiro-orcamento', this)">Orçamento</li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-section-label">ADMINISTRAÇÃO DO SISTEMA</li>
+
+                <li onclick="mudarAba('leads', this)" data-area="empresas">Leads / Clientes</li>
+                <li id="menuFinanceiro" onclick="mudarAba('financeiro', this)">Financeiro</li>
+                <li id="menuFuncionarios" onclick="mudarAba('funcionarios', this)">Funcionários</li>
+                <li id="menuContas" onclick="mudarAba('contas', this)">Acessos / Contas</li>
+
+                <li class="sidebar-logout" onclick="fazerLogout()">Sair</li>
+            </ul>
+        </aside>
+
+        <div class="main-content">
+            <header>
+                <h2>Painel Administrativo</h2>
+                <div class="user-info" id="userNameDisplay">Usuário</div>
+            </header>
+
+            <div class="content-body">
+                
+                <!-- ABA 1: DASHBOARD -->
+                <div id="dashboard" class="tab-content active">
+                    <div class="dashboard-topbar">
+                        <div>
+                            <h3>Dashboard</h3>
+                            <p>Visão geral da performance operacional e funil de leads.</p>
+                        </div>
+                        <div class="dashboard-actions">
+                            <button class="btn btn-secondary" onclick="atualizarDashboard()">Atualizar</button>
+                        </div>
+                    </div>
+
+                    <div class="sub-tabs">
+                        <div class="sub-tab-item active">Geral</div>
+                    </div>
+
+                    <!-- CARDS DE MÉTRICAS -->
+                    <div class="cards-grid">
+                        <div class="card-pro">
+                            <div class="card-header-flex">
+                                <h3>Total de Leads</h3>
+                                <span class="icon-badge">👥</span>
+                            </div>
+                            <div class="number" id="lblTotalLeads">0</div>
+                            <div class="card-footer-text">Soma total de cadastros no CRM</div>
+                        </div>
+
+                        <div class="card-pro" style="border-left: 4px solid var(--danger-color);">
+                            <div class="card-header-flex">
+                                <h3>Leads Quentes</h3>
+                                <span class="icon-badge">🔥</span>
+                            </div>
+                            <div class="number" id="lblQuentes">0</div>
+                            <div class="card-footer-text">Alta prioridade de conversão</div>
+                        </div>
+
+                        <div class="card-pro" style="border-left: 4px solid var(--warning-color);">
+                            <div class="card-header-flex">
+                                <h3>Leads Mornos</h3>
+                                <span class="icon-badge">⚖️</span>
+                            </div>
+                            <div class="number" id="lblMornos">0</div>
+                            <div class="card-footer-text">Em fase de nutrição</div>
+                        </div>
+
+                        <div class="card-pro" style="border-left: 4px solid var(--info-color);">
+                            <div class="card-header-flex">
+                                <h3>Leads Frios</h3>
+                                <span class="icon-badge">❄️</span>
+                            </div>
+                            <div class="number" id="lblFrios">0</div>
+                            <div class="card-footer-text">Baixa interação recente</div>
+                        </div>
+                    </div>
+
+                    <!-- SEGUNDA LINHA DE CARDS FINANCEIROS -->
+                    <div class="cards-grid">
+                        <div class="card-pro" style="border-left: 4px solid var(--success-color);">
+                            <div class="card-header-flex">
+                                <h3>Valor Ganho no Mês</h3>
+                                <span class="icon-badge">💵</span>
+                            </div>
+                            <div class="number" id="lblGanhoMes">R$ 0,00</div>
+                            <div class="card-footer-text">Receita faturada no mês atual</div>
+                        </div>
+
+                        <div class="card-pro" style="border-left: 4px solid #8b5cf6;">
+                            <div class="card-header-flex">
+                                <h3>Valor Ganho no Ano</h3>
+                                <span class="icon-badge">📈</span>
+                            </div>
+                            <div class="number" id="lblGanhoAno">R$ 0,00</div>
+                            <div class="card-footer-text">Acumulado do ano inteiro</div>
+                        </div>
+                    </div>
+
+                    <!-- BLOCOS VISUAIS -->
+                    <div class="dash-sections-grid">
+                        <div class="dash-box">
+                            <h4>Leads por Temperatura</h4>
+                            <p>Classifica os leads pelo nível de engajamento atual.</p>
+                            
+                            <div class="donut-container">
+                                <div class="donut-chart" id="donutChartElement">
+                                    <div class="donut-hole">
+                                        <span class="donut-total-num" id="donutTotalVal">0</span>
+                                        <span class="donut-total-label">TOTAL</span>
+                                    </div>
+                                </div>
+
+                                <div class="donut-legend-grid">
+                                    <div class="legend-item-col">
+                                        <div class="legend-label-top"><span class="dot dot-quente"></span> Quente</div>
+                                        <div class="legend-percent" id="pctQuente">0%</div>
+                                        <div class="legend-desc">Alta chance</div>
+                                    </div>
+                                    <div class="legend-item-col">
+                                        <div class="legend-label-top"><span class="dot dot-morno"></span> Morno</div>
+                                        <div class="legend-percent" id="pctMorno">0%</div>
+                                        <div class="legend-desc">Em nutrição</div>
+                                    </div>
+                                    <div class="legend-item-col">
+                                        <div class="legend-label-top"><span class="dot dot-frio"></span> Frio</div>
+                                        <div class="legend-percent" id="pctFrio">0%</div>
+                                        <div class="legend-desc">Sem interação</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dash-box">
+                            <h4>Desempenho por Funcionário (Cadastros)</h4>
+                            <p>Quantidade de leads cadastrados por cada operador/usuário.</p>
+                            <div id="listaProdutividadeFuncionarios" style="margin-top: 15px;">
+                                <!-- Preenchido via JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ABA 2: LEADS / CLIENTES -->
+                <div id="leads" class="tab-content">
+                    <div class="leads-header">
+                        <h3>Gerenciamento de Leads e Clientes</h3>
+                        <button class="btn" onclick="abrirPainelNovo()">+ Novo lead</button>
+                    </div>
+
+                    <div class="panel" id="painelCadastroLead">
+                        <h3 id="tituloPainelLead">Cadastrar Novo Cliente / Lead</h3>
+                        <input type="hidden" id="editId" value="">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nome Completo</label>
+                                <input type="text" id="leadNome" placeholder="Nome e Sobrenome">
+                                <span id="erroNome" class="erro-msg">Digite o nome completo</span>
+                            </div>
+                            <div class="form-group">
+                                <label>E-mail</label>
+                                <input type="text" id="leadEmail" placeholder="email@exemplo.com">
+                                <span id="erroEmail" class="erro-msg">E-mail inválido (obrigatório '@')</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Telefone</label>
+                                <input type="text" id="leadTelefone" placeholder="(00) 00000-0000" maxlength="15" oninput="mascaraTelefone(this)">
+                                <span id="erroTelefone" class="erro-msg">Telefone incompleto</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Serviço Contratado</label>
+                                <input type="text" id="leadServico" placeholder="Ex: Consultoria">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Temperatura</label>
+                                <select id="leadTemperatura">
+                                    <option value="frio">Frio</option>
+                                    <option value="morno" selected>Morno</option>
+                                    <option value="quente">Quente</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Valor Pago (R$)</label>
+                                <input type="number" id="leadValor" step="0.01" placeholder="0.00">
+                            </div>
+                            <div class="form-group">
+                                <label>Data do Pagamento</label>
+                                <input type="date" id="leadData">
+                            </div>
+                        </div>
+
+                        <h3 style="margin-top: 20px;">Endereço Completo</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Rua</label>
+                                <input type="text" id="endRua" placeholder="Nome da rua / avenida">
+                            </div>
+                            <div class="form-group">
+                                <label>Bairro</label>
+                                <input type="text" id="endBairro" placeholder="Nome do bairro">
+                            </div>
+                            <div class="form-group">
+                                <label>Número</label>
+                                <input type="text" id="endNumero" placeholder="Nº">
+                            </div>
+                            <div class="form-group">
+                                <label>Complemento</label>
+                                <input type="text" id="endComplemento" placeholder="Apto, Bloco, etc.">
+                            </div>
+                            <div class="form-group">
+                                <label>Cidade</label>
+                                <input type="text" id="endCidade" placeholder="Nome da cidade">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label>Observações</label>
+                                <textarea id="leadObs" rows="3" placeholder="Insira observações importantes sobre o lead..."></textarea>
+                            </div>
+                        </div>
+
+                        <button class="btn" id="btnSalvarLead" onclick="salvarLead()">Salvar Cliente</button>
+                        <button class="btn btn-secondary" onclick="fecharPainelCadastro()">Cancelar</button>
+                    </div>
+
+                    <!-- BARRA DE BUSCA DE LEADS -->
+                    <div class="panel mostrar" style="display: block; margin-bottom: 15px; padding: 15px 25px;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label>🔍 Buscar Lead por Nome</label>
+                            <input type="text" id="inputBuscaLead" placeholder="Digite o nome do cliente para filtrar..." oninput="filtrarLeads()">
+                        </div>
+                    </div>
+
+                    <div class="panel mostrar" style="display: block;">
+                        <h3>Lista de Clientes Cadastrados</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Fav</th>
+                                    <th>Nome Completo</th>
+                                    <th>E-mail</th>
+                                    <th>Telefone</th>
+                                    <th>Serviço</th>
+                                    <th>Temperatura</th>
+                                    <th>Valor</th>
+                                    <th>Endereço</th>
+                                    <th>Cadastrado Por</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaLeads">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ABA 3: FINANCEIRO -->
+                <div id="financeiro" class="tab-content">
+                    <div class="leads-header">
+                        <h3>Controle Financeiro</h3>
+                        <div class="form-group" style="margin-bottom: 0; min-width: 150px;">
+                            <label style="font-size: 11px;">Filtrar por Ano:</label>
+                            <select id="filtroAnoFinanceiro" onchange="renderizarTabelaInvestimentos()" style="padding: 6px; font-size: 13px;">
+                                <!-- Preenchido dinamicamente via JS -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="panel mostrar" style="display: block;">
+                        <h3>Lançar Custos / Investimentos</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Descrição do Investimento</label>
+                                <input type="text" id="invDescricao" placeholder="Ex: Anúncios Meta Ads">
+                            </div>
+                            <div class="form-group">
+                                <label>Valor Investido (R$)</label>
+                                <input type="number" id="invValor" step="0.01" placeholder="0.00">
+                            </div>
+                            <div class="form-group">
+                                <label>Data</label>
+                                <input type="date" id="invData">
+                            </div>
+                        </div>
+                        <button class="btn" onclick="salvarInvestimento()">Adicionar Investimento</button>
+                    </div>
+
+                    <div class="panel mostrar" style="display: block;">
+                        <h3>Extrato Histórico de Transações</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Descrição / Cliente</th>
+                                    <th>Valor</th>
+                                    <th>Data</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaInvestimentos">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ABA 4: FUNCIONÁRIOS -->
+                <div id="funcionarios" class="tab-content">
+                    <div class="panel mostrar" style="display: block;">
+                        <h3 id="tituloPainelFunc">Cadastrar Funcionário</h3>
+                        <input type="hidden" id="editFuncId" value="">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nome do Funcionário</label>
+                                <input type="text" id="funcNome" placeholder="Nome completo">
+                            </div>
+                            <div class="form-group">
+                                <label>Cargo / Função</label>
+                                <input type="text" id="funcCargo" placeholder="Ex: Desenvolvedor">
+                            </div>
+                        </div>
+                        <button class="btn" id="btnSalvarFunc" onclick="salvarFuncionario()">Cadastrar Funcionário</button>
+                        <button class="btn btn-secondary" id="btnCancelarFunc" style="display: none;" onclick="cancelarEdicaoFunc()">Cancelar</button>
+                    </div>
+
+                    <div class="panel mostrar" style="display: block;">
+                        <h3>Equipe Cadastrada</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Cargo</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaFuncionarios">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ABA 5: CONTAS / ACESSOS (ATUALIZADA COM SELETOR DE PERMISSÃO) -->
+                <div id="contas" class="tab-content">
+                    <div class="panel mostrar" style="display: block;">
+                        <h3>Criar Nova Conta de Acesso</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Usuário de Acesso</label>
+                                <input type="text" id="novoUsuarioLogin" placeholder="Ex: joao.silva">
+                            </div>
+                            <div class="form-group">
+                                <label>Senha</label>
+                                <input type="password" id="novoUsuarioSenha" placeholder="********">
+                            </div>
+                            <div class="form-group">
+                                <label>Tipo de Permissão / Cargo</label>
+                                <select id="novoUsuarioAdmin" onchange="atualizarCampoArea()">
+                                    <option value="false">Funcionário (Acesso Restrito)</option>
+                                    <option value="true">Administrador (Acesso Total)</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="grupoAreaAcesso">
+                                <label>Área de Acesso</label>
+                                <select id="novoUsuarioArea" title="Define quais blocos do Ecossistema GE essa conta vai enxergar no menu">
+                                    <option value="empresas" title="Só as categorias de gestão empresarial">Empresas</option>
+                                    <option value="politico" title="Só as categorias de gestão política">Político</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn" onclick="criarContaFuncionario()">Criar Conta de Acesso</button>
+                    </div>
+
+                    <div class="panel mostrar" style="display: block;">
+                        <h3>Contas Cadastradas no Sistema</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Usuário</th>
+                                    <th>Tipo de Acesso</th>
+                                    <th>Área</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaContas">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ============ PÁGINAS DO ECOSSISTEMA GE (placeholders) ============ -->
+                <!-- 1. ESTRATÉGIA -->
+                <div id="eco-estrategia-planejamento" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Estratégia" data-icon="🎯" data-title="Planejamento"></div>
+                <div id="eco-estrategia-metas-okrs" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Estratégia" data-icon="🎯" data-title="Metas e OKRs"></div>
+                <div id="eco-estrategia-indicadores" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Estratégia" data-icon="🎯" data-title="Indicadores"></div>
+                <div id="eco-estrategia-decisao" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Estratégia" data-icon="🎯" data-title="Tomada de decisão"></div>
+
+                <!-- 2. PROCESSOS -->
+                <div id="eco-processos-mapeamento" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Processos" data-icon="⚙️" data-title="Mapeamento"></div>
+                <div id="eco-processos-padronizacao" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Processos" data-icon="⚙️" data-title="Padronização"></div>
+                <div id="eco-processos-organizacao" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Processos" data-icon="⚙️" data-title="Organização"></div>
+                <div id="eco-processos-melhoria" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Processos" data-icon="⚙️" data-title="Melhoria contínua"></div>
+
+                <!-- 3. PESSOAS & TIMES -->
+                <div id="eco-pessoas-estrutura" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Pessoas & Times" data-icon="🤝" data-title="Estrutura organizacional"></div>
+                <div id="eco-pessoas-papeis" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Pessoas & Times" data-icon="🤝" data-title="Papéis e responsabilidades"></div>
+                <div id="eco-pessoas-performance" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Pessoas & Times" data-icon="🤝" data-title="Performance"></div>
+                <div id="eco-pessoas-desenvolvimento" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Pessoas & Times" data-icon="🤝" data-title="Desenvolvimento"></div>
+
+                <!-- 4. QUALIDADE -->
+                <div id="eco-qualidade-gestao" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Qualidade" data-icon="✅" data-title="Gestão da qualidade"></div>
+                <div id="eco-qualidade-iso9001" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Qualidade" data-icon="✅" data-title="ISO 9001"></div>
+                <div id="eco-qualidade-auditorias" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Qualidade" data-icon="✅" data-title="Auditorias"></div>
+                <div id="eco-qualidade-nao-conformidades" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Qualidade" data-icon="✅" data-title="Não conformidades"></div>
+
+                <!-- 5. AGILIDADE -->
+                <div id="eco-agilidade-demandas" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Agilidade" data-icon="⚡" data-title="Gestão de demandas"></div>
+                <div id="eco-agilidade-priorizacao" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Agilidade" data-icon="⚡" data-title="Priorização"></div>
+                <div id="eco-agilidade-rotinas" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Agilidade" data-icon="⚡" data-title="Rotinas de acompanhamento"></div>
+                <div id="eco-agilidade-entregas" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Agilidade" data-icon="⚡" data-title="Entregas"></div>
+
+                <!-- 6. PERFORMANCE -->
+                <div id="eco-performance-indicadores" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Performance" data-icon="📈" data-title="Indicadores"></div>
+                <div id="eco-performance-analise" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Performance" data-icon="📈" data-title="Análise de resultados"></div>
+                <div id="eco-performance-eficiencia" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Performance" data-icon="📈" data-title="Eficiência"></div>
+                <div id="eco-performance-produtividade" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Performance" data-icon="📈" data-title="Produtividade"></div>
+
+                <!-- 7. DIAGNÓSTICO & EVOLUÇÃO -->
+                <div id="eco-diagnostico-ge" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Diagnóstico & Evolução" data-icon="🧭" data-title="Diagnóstico GE"></div>
+                <div id="eco-diagnostico-indice" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Diagnóstico & Evolução" data-icon="🧭" data-title="Índice G.E.™"></div>
+                <div id="eco-diagnostico-plano-acao" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Diagnóstico & Evolução" data-icon="🧭" data-title="Plano de ação"></div>
+                <div id="eco-diagnostico-acompanhamento" class="tab-content eco-placeholder-tab" data-area="empresas" data-cat="Diagnóstico & Evolução" data-icon="🧭" data-title="Acompanhamento da evolução"></div>
+
+                <!-- 8. ESTRATÉGIA POLÍTICA (rascunho) -->
+                <div id="pol-estrategia-planejamento" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Estratégia Política" data-icon="🏛️" data-title="Planejamento de campanha/mandato"></div>
+                <div id="pol-estrategia-agenda" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Estratégia Política" data-icon="🏛️" data-title="Agenda político-partidária"></div>
+                <div id="pol-estrategia-pesquisas" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Estratégia Política" data-icon="🏛️" data-title="Pesquisas e indicadores"></div>
+                <div id="pol-estrategia-decisao" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Estratégia Política" data-icon="🏛️" data-title="Tomada de decisão"></div>
+
+                <!-- 9. COMUNICAÇÃO & IMAGEM (rascunho) -->
+                <div id="pol-comunicacao-redes" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Comunicação & Imagem" data-icon="📣" data-title="Redes sociais"></div>
+                <div id="pol-comunicacao-imprensa" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Comunicação & Imagem" data-icon="📣" data-title="Assessoria de imprensa"></div>
+                <div id="pol-comunicacao-discursos" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Comunicação & Imagem" data-icon="📣" data-title="Discursos e pautas"></div>
+                <div id="pol-comunicacao-opiniao" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Comunicação & Imagem" data-icon="📣" data-title="Pesquisa de opinião"></div>
+
+                <!-- 10. BASE & RELACIONAMENTO (rascunho) -->
+                <div id="pol-base-eleitores" class="tab-content" data-area="politico">
+                    <div class="leads-header">
+                        <h3>Cadastro de Eleitores</h3>
+                        <button class="btn" onclick="abrirPainelNovoEleitor()">+ Novo eleitor</button>
+                    </div>
+
+                    <div class="panel" id="painelCadastroEleitor">
+                        <h3 id="tituloPainelEleitor">Cadastrar Novo Eleitor</h3>
+                        <input type="hidden" id="editIdEleitor" value="">
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nome Completo</label>
+                                <input type="text" id="eleitorNome" placeholder="Nome e Sobrenome">
+                                <span id="erroNomeEleitor" class="erro-msg">Digite o nome do eleitor</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Telefone</label>
+                                <input type="text" id="eleitorTelefone" placeholder="(00) 00000-0000" maxlength="15" oninput="mascaraTelefone(this)">
+                            </div>
+                            <div class="form-group">
+                                <label>Bairro / Região</label>
+                                <input type="text" id="eleitorBairro" placeholder="Ex: Centro">
+                            </div>
+                            <div class="form-group">
+                                <label>Status de apoio</label>
+                                <select id="eleitorStatus">
+                                    <option value="apoiador">Apoiador</option>
+                                    <option value="indeciso" selected>Indeciso</option>
+                                    <option value="contra">Contra</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group" style="grid-column: span 2;">
+                                <label>Observações</label>
+                                <textarea id="eleitorObs" rows="3" placeholder="Insira observações importantes sobre o eleitor..."></textarea>
+                            </div>
+                        </div>
+
+                        <button class="btn" id="btnSalvarEleitor" onclick="salvarEleitor()">Salvar Eleitor</button>
+                        <button class="btn btn-secondary" onclick="fecharPainelCadastroEleitor()">Cancelar</button>
+                    </div>
+
+                    <div class="panel mostrar" style="display: block; margin-bottom: 15px; padding: 15px 25px;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label>🔍 Buscar Eleitor por Nome</label>
+                            <input type="text" id="inputBuscaEleitor" placeholder="Digite o nome..." oninput="filtrarEleitores()">
+                        </div>
+                    </div>
+
+                    <div class="panel mostrar" style="display: block;">
+                        <h3>Lista de Eleitores Cadastrados</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Telefone</th>
+                                    <th>Bairro</th>
+                                    <th>Status</th>
+                                    <th>Observações</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaEleitores"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="pol-base-atendimento" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Base & Relacionamento" data-icon="🤝" data-title="Atendimento ao cidadão"></div>
+                <div id="pol-base-eventos" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Base & Relacionamento" data-icon="🤝" data-title="Eventos e agenda de rua"></div>
+                <div id="pol-base-fidelizacao" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Base & Relacionamento" data-icon="🤝" data-title="Fidelização de base"></div>
+
+                <!-- 11. MANDATO & LEGISLATIVO (rascunho) -->
+                <div id="pol-mandato-proposicoes" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Mandato & Legislativo" data-icon="📜" data-title="Projetos e proposições"></div>
+                <div id="pol-mandato-emendas" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Mandato & Legislativo" data-icon="📜" data-title="Emendas parlamentares"></div>
+                <div id="pol-mandato-comissoes" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Mandato & Legislativo" data-icon="📜" data-title="Comissões"></div>
+                <div id="pol-mandato-votacoes" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Mandato & Legislativo" data-icon="📜" data-title="Votações e pautas"></div>
+
+                <!-- 12. FINANCEIRO & PRESTAÇÃO DE CONTAS (rascunho) -->
+                <div id="pol-financeiro-arrecadacao" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Financeiro & Prestação de Contas" data-icon="💰" data-title="Arrecadação de campanha"></div>
+                <div id="pol-financeiro-tse" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Financeiro & Prestação de Contas" data-icon="💰" data-title="Prestação de contas (TSE)"></div>
+                <div id="pol-financeiro-fornecedores" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Financeiro & Prestação de Contas" data-icon="💰" data-title="Fornecedores"></div>
+                <div id="pol-financeiro-orcamento" class="tab-content eco-placeholder-tab" data-area="politico" data-cat="Financeiro & Prestação de Contas" data-icon="💰" data-title="Orçamento"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
